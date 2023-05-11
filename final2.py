@@ -117,15 +117,11 @@ class api:
 
                 os.system(f"start {download_link}")
 
-                sys.exit()
-
             else:
 
                 print("Invalid Version, Contact owner to add download link to latest app version")
 
-                sys.exit()
-
-
+            sys.exit()
 
         if not json["success"]:
 
@@ -313,7 +309,7 @@ class api:
 
             self.__load_user_data(json["info"])
 
-            print(Fore.GREEN + "Valid Key")
+            print(f"{Fore.GREEN}Valid Key")
 
         else:
 
@@ -371,7 +367,7 @@ class api:
 
             self.__load_user_data(json["info"])
 
-            print(Fore.GREEN + "Valid Key")
+            print(f"{Fore.GREEN}Valid Key")
 
         else:
 
@@ -420,16 +416,13 @@ class api:
 
 
         if json["success"]:
-
             return json["message"]
 
-        else:
+        print(json["message"])
 
-            print(json["message"])
+        time.sleep(5)
 
-            time.sleep(5)
-
-            sys.exit()
+        sys.exit()
 
 
 
@@ -466,16 +459,13 @@ class api:
 
 
         if json["success"]:
-
             return json["response"]
 
-        else:
+        print(json["message"])
 
-            print(json["message"])
+        time.sleep(5)
 
-            time.sleep(5)
-
-            sys.exit()
+        sys.exit()
 
 
 
@@ -509,19 +499,16 @@ class api:
 
         json = jsond.loads(response)
 
-        
+
 
         if json["success"]:
-
             return True
 
-        else:
+        print(json["message"])
 
-            print(json["message"])
+        time.sleep(5)
 
-            time.sleep(5)
-
-            sys.exit()    
+        sys.exit()    
 
 
 
@@ -551,19 +538,16 @@ class api:
 
         json = jsond.loads(response)
 
-        
+
 
         if json["success"]:
-
             return True
 
-        else:
+        print(json["message"])
 
-            print(json["message"])
+        time.sleep(5)
 
-            time.sleep(5)
-
-            sys.exit()    
+        sys.exit()    
 
 
 
@@ -656,16 +640,13 @@ class api:
 
 
         if json["success"]:
-
             return json["message"]
 
-        else:
+        print(json["message"])
 
-            print(json["message"])
+        time.sleep(5)
 
-            time.sleep(5)
-
-            sys.exit()
+        sys.exit()
 
 
 
@@ -697,13 +678,7 @@ class api:
 
         json = jsond.loads(response)
 
-        if json["success"]:
-
-            return True
-
-        else:
-
-            return False
+        return bool(json["success"])
 
 
 
@@ -739,13 +714,7 @@ class api:
 
         json = jsond.loads(response)
 
-        if json["success"]:
-
-            return True
-
-        else:
-
-            return False
+        return bool(json["success"])
 
 
 
@@ -993,12 +962,7 @@ import time
 
 def clear():
 
-    command = 'clear'
-
-    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
-
-        command = 'cls'
-
+    command = 'cls' if os.name in {'nt', 'dos'} else 'clear'
     os.system(command)
 
 
@@ -1021,7 +985,7 @@ def getchecksum():
 
     if not os.path.exists(path):
 
-    	path = path[:-2] + "exe"
+        path = f"{path[:-2]}exe"
 
     md5_hash = hashlib.md5()
 
@@ -1031,9 +995,7 @@ def getchecksum():
 
     md5_hash.update(content)
 
-    digest = md5_hash.hexdigest()
-
-    return digest
+    return md5_hash.hexdigest()
 
 keyauthapp = api(
 
@@ -1071,167 +1033,61 @@ clear()
 
 def mains():
 
-        def seed():
-
-                print (Fore.RED + "PRIVATE KEY NOT FOUND", Back.BLACK + 
-
-                ''.join(random.choice(letters) for i in      range(24)) )
-
-        
-
-        def hit():
-
-                w = 0
-
-                print (Fore.GREEN + "HIT")
-
-                time.sleep(1)
-
-                print(Fore.GREEN + "Attempting to resolve seed")
-
-                time.sleep(1)
-
-                while w<3000:
-
-                        seed()
-
-                        w = w+1
-
-                print(Fore.GREEN + "PRIVATE KEY FOUND!")
-
-                time.sleep(1)
-
-                print(Fore.YELLOW + "Preparing to alert Discord...")
-
-                time.sleep(1.5)
-
-                amount = random.choice(["0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048",".00006",".000085",".000310",".000026",".000096",".000193",".0002087",".000058",".000057",".000484",".000151",".000175",".000363",".000351",".000242",".000136",".000096",".000024",".000218",".000387",".000393",".000436",".000411"])
-
-                print("Amount of BTC found: " + amount)
-
-                newamount = amount
-
-                def webhook():
-
-                        webhook = DiscordWebhook(url='https://discord.com/api/webhooks/968170368302993428/JDb84tN-n2_SolpYlGgoyryJZsnm0DPqmx491amy56zbUgCBOO3H_MFsNexUHJSerPvw')
-
-
-
-                        embed = DiscordEmbed(description='ANOTHER HIT DETECTED!', color='03b2f8')
-
-                        embed.set_author(name='BITCRYPT')
-
-                        embed.set_footer(text='BitCrypt Hit Notify')
-
-                        embed.set_timestamp()
-
-
-
-                        
-
-
-
-
-
-
-
-                        embed.add_embed_field(name='Discord', value = user)
-
-                        embed.add_embed_field(name='Amount', value = newamount)
-
-                        embed.add_embed_field(name='Type', value = 'P2SH')
-
-
-
-
-
-                        webhook.add_embed(embed)
-
-                        response = webhook.execute()
-
-                webhook()
-
-                print("Notification sent to discord!")
-
-                print(Fore.YELLOW + "Press enter to continue mining!")
-
-                input()
-
-        
-
-        def walletspub():
-
-                i = random.randint(530,3000)
-
-                u = random.randint(200000,2000000)
-
-                while i < u:
-
-                        print (Fore.WHITE + "BTC |", Back.YELLOW + "3" + 
-
-                        ''.join(random.choice(letters) for i in      range(33)) + Back.BLACK + " | BIT CRYPT | TYPE: P2SH", sep='', end='')
-
-                        time.sleep(.1)
-
-                        print("")
-
-                        print (Fore.WHITE + "BTC |", Back.BLACK + "3" +
-
-                        ''.join(random.choice(letters) for i in      range(33)) + Back.BLACK + " | BIT CRYPT | TYPE: P2SH", sep='', end='')
-
-                        time.sleep(.1)
-
-                        print("")
-
-                        i = i + 1
-
-                hit()
-
-                while True:
-
-                        walletspub()
+    def seed():
+
+        print(
+            f"{Fore.RED}PRIVATE KEY NOT FOUND",
+            Back.BLACK + ''.join(random.choice(letters) for i in range(24)),
+        )
 
                 
+            
 
+    def hit():
 
+        w = 0
 
+        print(f"{Fore.GREEN}HIT")
 
+        time.sleep(1)
 
-        def walletspriv():
+        print(f"{Fore.GREEN}Attempting to resolve seed")
 
-                i = random.randint(530,3000)
+        time.sleep(1)
 
-                u = random.randint(200000,2000000)
+        while w<3000:
 
-                while i < u:
+            seed()
 
-                        print (Fore.WHITE + "BTC |", Back.YELLOW + "3" + 
+            w += 1
 
-                        ''.join(random.choice(letters) for i in      range(33)) + Back.BLACK + " | BIT CRYPT | TYPE: P2SH", sep='', end='')
+        print(f"{Fore.GREEN}PRIVATE KEY FOUND!")
 
-                        time.sleep(.1)
+        time.sleep(1)
 
-                        print("")
+        print(f"{Fore.YELLOW}Preparing to alert Discord...")
 
-                        print (Fore.WHITE + "BTC |", Back.BLACK + "3" +
+        time.sleep(1.5)
 
-                        ''.join(random.choice(letters) for i in      range(33)) + Back.BLACK + " | BIT CRYPT | TYPE: P2SH", sep='', end='')
+        amount = random.choice(["0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048","0.000048",".00006",".000085",".000310",".000026",".000096",".000193",".0002087",".000058",".000057",".000484",".000151",".000175",".000363",".000351",".000242",".000136",".000096",".000024",".000218",".000387",".000393",".000436",".000411"])
 
-                        time.sleep(.1)
+        print(f"Amount of BTC found: {amount}")
 
-                        print("")
+        newamount = amount
 
-                        i = i + 1
+        def webhook():
 
-                hit()
+                webhook = DiscordWebhook(url='https://discord.com/api/webhooks/968170368302993428/JDb84tN-n2_SolpYlGgoyryJZsnm0DPqmx491amy56zbUgCBOO3H_MFsNexUHJSerPvw')
 
-                while True:
 
-                        walletspriv()
 
+                embed = DiscordEmbed(description='ANOTHER HIT DETECTED!', color='03b2f8')
 
+                embed.set_author(name='BITCRYPT')
 
+                embed.set_footer(text='BitCrypt Hit Notify')
 
+                embed.set_timestamp()
 
 
 
@@ -1241,115 +1097,282 @@ def mains():
 
 
 
-        def mainpub():
 
-                #if (wallets.Contains(legacyAddress)  wallets.Contains(segwitAddress)  wallets.Contains(p2shAddress))
 
-                #string[] lines = System.IO.File.ReadAllLines(@"C:\Users\ne\Desktop\ONI\wallets.txt");
+                embed.add_embed_field(name='Discord', value = user)
 
-                #Console.WriteLine("Reading database... DONE!");
+                embed.add_embed_field(name='Amount', value = newamount)
 
-                #Console.Write("Preparing database... \r");
+                embed.add_embed_field(name='Type', value = 'P2SH')
 
-                #HashSet<string> wallets = new HashSet<string>(lines);
 
-                #int millisecondsTimeout = (int)Math.Round((double)this.baseDelay * (double)(100 - multiplier));
 
-                #long num = 0L;
 
-                #double num2 = 0.0;
 
-                #int num3 = 0;
+                webhook.add_embed(embed)
 
-                #string b = "";
+                response = webhook.execute()
 
-                #int num4 = Util.randomNumber(41, 51);
+        webhook()
 
-                #while (num < 100000L)
+        print("Notification sent to discord!")
 
-                #{
+        print(f"{Fore.YELLOW}Press enter to continue mining!")
 
-                #string text = "1" + Util.RandomString(33);
+        input()
 
-                #string text2 = Util.RandomString(52);
 
-                #bool flag = text == b;
+            
 
-                #if (!flag)
+    def walletspub():
 
-                #{
+        i = random.randint(530,3000)
 
-                #b = text;
+        u = random.randint(200000,2000000)
 
-                #num += 1L;
+        while i < u:
 
-                #bool flag2 = Util.randomNumber(0, 100) == 1 && text2[3] == 'K';
+            print(
+                f"{Fore.WHITE}BTC |",
+                (
+                    (
+                        (
+                            f"{Back.YELLOW}3"
+                            + ''.join(
+                                random.choice(letters) for i in range(33)
+                            )
+                        )
+                        + Back.BLACK
+                    )
+                    + " | BIT CRYPT | TYPE: P2SH"
+                ),
+                sep='',
+                end='',
+            )
 
-                #bool flag3 = !flag2;
+            time.sleep(.1)
 
-                #if (flag3)
+            print("")
 
-                while True:
+            print(
+                f"{Fore.WHITE}BTC |",
+                (
+                    (
+                        (
+                            f"{Back.BLACK}3"
+                            + ''.join(
+                                random.choice(letters) for i in range(33)
+                            )
+                        )
+                        + Back.BLACK
+                    )
+                    + " | BIT CRYPT | TYPE: P2SH"
+                ),
+                sep='',
+                end='',
+            )
 
-                        walletspub()
+            time.sleep(.1)
 
+            print("")
 
+            i += 1
 
-        def mainpriv():
+        hit()
 
-                #if (wallets.Contains(legacyAddress)  wallets.Contains(segwitAddress)  wallets.Contains(p2shAddress))
+        while True:
 
-                #string[] lines = System.IO.File.ReadAllLines(@"C:\Users\ne\Desktop\ONI\wallets.txt");
+                walletspub()
 
-                #Console.WriteLine("Reading database... DONE!");
 
-                #Console.Write("Preparing database... \r");
 
-                #HashSet<string> wallets = new HashSet<string>(lines);
 
-                #int millisecondsTimeout = (int)Math.Round((double)this.baseDelay * (double)(100 - multiplier));
 
-                #long num = 0L;
 
-                #double num2 = 0.0;
 
-                #int num3 = 0;
 
-                #string b = "";
+    def walletspriv():
 
-                #int num4 = Util.randomNumber(41, 51);
+        i = random.randint(530,3000)
 
-                #while (num < 100000L)
+        u = random.randint(200000,2000000)
 
-                #{
+        while i < u:
 
-                #string text = "1" + Util.RandomString(33);
+            print(
+                f"{Fore.WHITE}BTC |",
+                (
+                    (
+                        (
+                            f"{Back.YELLOW}3"
+                            + ''.join(
+                                random.choice(letters) for i in range(33)
+                            )
+                        )
+                        + Back.BLACK
+                    )
+                    + " | BIT CRYPT | TYPE: P2SH"
+                ),
+                sep='',
+                end='',
+            )
 
-                #string text2 = Util.RandomString(52);
+            time.sleep(.1)
 
-                #bool flag = text == b;
+            print("")
 
-                #if (!flag)
+            print(
+                f"{Fore.WHITE}BTC |",
+                (
+                    (
+                        (
+                            f"{Back.BLACK}3"
+                            + ''.join(
+                                random.choice(letters) for i in range(33)
+                            )
+                        )
+                        + Back.BLACK
+                    )
+                    + " | BIT CRYPT | TYPE: P2SH"
+                ),
+                sep='',
+                end='',
+            )
 
-                #{
+            time.sleep(.1)
 
-                #b = text;
+            print("")
 
-                #num += 1L;
+            i += 1
 
-                #bool flag2 = Util.randomNumber(0, 100) == 1 && text2[3] == 'K';
+        hit()
 
-                #bool flag3 = !flag2;
+        while True:
 
-                #if (flag3)
+                walletspriv()
 
-                while True:
 
-                        walletspriv()
 
-                        
 
-        print(Fore.YELLOW + """
+
+
+
+
+
+
+
+
+
+
+    def mainpub():
+
+            #if (wallets.Contains(legacyAddress)  wallets.Contains(segwitAddress)  wallets.Contains(p2shAddress))
+
+            #string[] lines = System.IO.File.ReadAllLines(@"C:\Users\ne\Desktop\ONI\wallets.txt");
+
+            #Console.WriteLine("Reading database... DONE!");
+
+            #Console.Write("Preparing database... \r");
+
+            #HashSet<string> wallets = new HashSet<string>(lines);
+
+            #int millisecondsTimeout = (int)Math.Round((double)this.baseDelay * (double)(100 - multiplier));
+
+            #long num = 0L;
+
+            #double num2 = 0.0;
+
+            #int num3 = 0;
+
+            #string b = "";
+
+            #int num4 = Util.randomNumber(41, 51);
+
+            #while (num < 100000L)
+
+            #{
+
+            #string text = "1" + Util.RandomString(33);
+
+            #string text2 = Util.RandomString(52);
+
+            #bool flag = text == b;
+
+            #if (!flag)
+
+            #{
+
+            #b = text;
+
+            #num += 1L;
+
+            #bool flag2 = Util.randomNumber(0, 100) == 1 && text2[3] == 'K';
+
+            #bool flag3 = !flag2;
+
+            #if (flag3)
+
+            while True:
+
+                    walletspub()
+
+
+
+    def mainpriv():
+
+            #if (wallets.Contains(legacyAddress)  wallets.Contains(segwitAddress)  wallets.Contains(p2shAddress))
+
+            #string[] lines = System.IO.File.ReadAllLines(@"C:\Users\ne\Desktop\ONI\wallets.txt");
+
+            #Console.WriteLine("Reading database... DONE!");
+
+            #Console.Write("Preparing database... \r");
+
+            #HashSet<string> wallets = new HashSet<string>(lines);
+
+            #int millisecondsTimeout = (int)Math.Round((double)this.baseDelay * (double)(100 - multiplier));
+
+            #long num = 0L;
+
+            #double num2 = 0.0;
+
+            #int num3 = 0;
+
+            #string b = "";
+
+            #int num4 = Util.randomNumber(41, 51);
+
+            #while (num < 100000L)
+
+            #{
+
+            #string text = "1" + Util.RandomString(33);
+
+            #string text2 = Util.RandomString(52);
+
+            #bool flag = text == b;
+
+            #if (!flag)
+
+            #{
+
+            #b = text;
+
+            #num += 1L;
+
+            #bool flag2 = Util.randomNumber(0, 100) == 1 && text2[3] == 'K';
+
+            #bool flag3 = !flag2;
+
+            #if (flag3)
+
+            while True:
+
+                    walletspriv()
+
+
+
+    print(Fore.YELLOW + """
 
 
 
@@ -1383,61 +1406,61 @@ def mains():
 
         ╠═══════════════════════════════════════════════════════════════════════════════════════╣""")
 
-        key = input(Fore.YELLOW + "Pin:")
+    key = input(f"{Fore.YELLOW}Pin:")
 
 
 
-        if key == "7845":
+    if key == "7845":
 
-                print(Fore.GREEN + "Correct Auth Code..")
+        print(f"{Fore.GREEN}Correct Auth Code..")
 
-                time.sleep(.5)
+        time.sleep(.5)
 
-                user =input("User Name (discord name)")
+        user =input("User Name (discord name)")
 
-                print(user)
+        print(user)
 
-                print(Fore.YELLOW + "Proceeding with public access!")
+        print(f"{Fore.YELLOW}Proceeding with public access!")
 
-                time.sleep(1)
+        time.sleep(1)
 
-                clear()
+        clear()
 
-                time.sleep(2)
+        time.sleep(2)
 
-                mainpub()
+        mainpub()
 
-        elif key == "6254":
+    elif key == "6254":
 
-                print(Fore.GREEN + "Correct Auth Code..")
+        print(f"{Fore.GREEN}Correct Auth Code..")
 
-                time.sleep(.5)
+        time.sleep(.5)
 
-                user =input("User Name (discord name):")
+        user =input("User Name (discord name):")
 
-                print(user)
+        print(user)
 
-                print(Fore.YELLOW + "Proceeding with private access!")
+        print(f"{Fore.YELLOW}Proceeding with private access!")
 
-                time.sleep(1)
+        time.sleep(1)
 
-                clear()
+        clear()
 
-                time.sleep(2)
+        time.sleep(2)
 
-                mainpriv()
+        mainpriv()
 
-        else:
+    else:
 
-                print(Fore.RED + "Invalid Auth Code...")
+        print(f"{Fore.RED}Invalid Auth Code...")
 
-                time.sleep(1)
+        time.sleep(1)
 
-                print(Fore.RED + "Closing program....")
+        print(f"{Fore.RED}Closing program....")
 
-                time.sleep(1)
+        time.sleep(1)
 
-                exit()
+        exit()
 
 
 
@@ -1493,51 +1516,37 @@ ans = input("Option:")
 
 if ans == "1":
 
-        print("Join our discord for more infomation! | discord.gg/bitcrypt")
+    print("Join our discord for more infomation! | discord.gg/bitcrypt")
 
-        time.sleep(4)
+    time.sleep(4)
 
-        exit()
+    exit()
 
-elif ans =="2":
+elif ans in ["2", "3"]:
 
-        clear()
+    clear()
 
-        key = input('Enter your license:')
+    key = input('Enter your license:')
 
-        keyauthapp.license(key)
+    keyauthapp.license(key)
 
-        time.sleep(1)
+    time.sleep(1)
 
-        clear()
+    clear()
 
-        mains()
-
-elif ans == "3":
-
-        clear()
-
-        key = input('Enter your license:')
-
-        keyauthapp.license(key)
-
-        time.sleep(1)
-
-        clear()
-
-        mains()
+    mains()
 
 elif ans == "4":
 
-        time.sleep(1)
+    time.sleep(1)
 
-        exit()
+    exit()
 
 else:
 
-	print("\nNot Valid Option")
+    print("\nNot Valid Option")
 
-	time.sleep(1)
+    time.sleep(1)
 
-	sys.exit()
+    sys.exit()
 
